@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			footer{
+				position: fixed;
+				height: 40px;
+				bottom: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<p>姓名: <span class="name"></span></p>
+		<p>性别: <span class="sex"></span></p>
+		<p>年龄: <span class="age"></span></p>
+		<p>爱好: <span class="hoppy"></span></p>
+		<p>手机: <span class="phone"></span></p>
+		<footer>
+			
+			
+		</footer>
+	</body>
+	<script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		
+		//load方法  1: 请求地址 2:参数 3:回调函数
+		$('footer').load('test.html',function(data){
+			console.log(data);
+		});
+		var jsonStr ='{	"code":200,"data": {"name": "王二小","sex": "女","age": 8,"hoppy": ["放牛", "唱歌", "睡觉"],"phone":[{"pp":"华为P30","price":6999},{"pp":"小米9","price":2999},{"pp":"Apple","price":8999}]}}'
+		
+		var jsonObj = JSON.parse(jsonStr);//将json字符串转为json对象
+		console.log(jsonObj)
+		//get请求
+		$.get('test.json',function(res){
+			
+			if(res.code==200){//返回数据成功
+			var user =res.data;
+			$(".name").text(user.name);
+			$(".sex").text(user.sex);
+			$(".age").text(user.age);
+			//each遍历  参数1:数据 (对象，数组)  参数2: 回调函数 (下标,对象);
+			var hoppyHtml='';
+			$.each(user.hoppy,function(i,item){
+				hoppyHtml += '<span style="color:red">'+item+',</span>'
+			})
+			$('.hoppy').after(hoppyHtml);
+			
+			//遍历手机
+			var phoneHtml='';
+			$.each(user.phone,function(i,item){
+				phoneHtml += '<span style="color:#096">'+item.pp+'</span>:<span style="color:red;margin-right:10px">￥'+item.price+'元</span>'
+				
+			})
+			$('.phone').after(phoneHtml)
+			}
+		})		
+		//getJSON  请求json数据
+		
+		$.getJSON('test.json',function(res){
+			
+			console.log(res);
+		})
+		
+		//getScript  请求js代码
+		$.getScript('test.js',function(res){
+			
+			console.log(res);
+		})
+		
+	</script>
+</html>

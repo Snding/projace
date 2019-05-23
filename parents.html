@@ -1,0 +1,92 @@
+<html>
+	
+	<style>
+		
+		
+		ul{list-style: none;
+		margin-top: 30px;
+		height: 30px;
+		}
+		li{
+			float: left;
+			width: 100px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			background-color: #e5e5e5;
+			color: #666;
+			margin-right: 5px;
+			font-size: 14px;
+		}
+		li:hover{
+				cursor: pointer;
+			background-color: #096;
+			color: #fff;
+		}
+		li.active{
+			
+			background-color: #096;
+			color: #fff;
+		}
+		
+		.panel{
+			position: relative;
+			width:310px;
+			height: 200px;
+			margin-left: 30px;
+		}
+		.panel div{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width:310px;
+			height: 200px;
+			text-align: center;
+			line-height: 200px;
+			background: #FFF;
+			display: none;
+		}
+		.panel div.show{
+			
+			display: block;
+			
+		}
+	</style>
+	<body>
+		
+		
+		<!-- <div>
+			<div class="box">
+				<div><span>我是span</span></div>
+			</div>
+		</div> -->
+		
+		<ul>
+			
+			<li class="active">item1</li>
+			<li>item2</li>
+			<li>item3</li>
+		</ul>
+		<div class="panel">
+			<div class="show">面板1</div>
+			<div>面板2</div>
+			<div>面板3</div>
+		</div>
+		
+	</body>
+	<script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		//parent 返回父元素
+		//parents 返回祖先元素 参数:返回具有自定筛选条件的 祖先元素
+		
+		console.log($('span').parents('.box'));
+		$('li').not('.active').css('background-color', 'red');
+		$('ul li').click(function(){
+			var index = $(this).index();
+			$(this).addClass('active').siblings().removeClass('active');
+			$('.panel div').eq(index).addClass('show').siblings().removeClass('show');
+			
+		})
+	</script>
+</html>

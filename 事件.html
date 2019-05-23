@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		<style>
+			
+			
+			.img{
+				position: relative;
+				opacity: 1;
+				
+				}
+			
+			.fadeIn{
+				animation: fadeIn 1s ease 1 forwards ;
+				display: block;
+			}
+			
+			@keyframes fadeIn{
+				from{
+					display: block;
+					opacity: 0;
+					transform: translateX(-500px);
+				}
+				to{
+					opacity: 1;
+					transform: translateX(0);
+					
+				}
+			}
+			
+			.fadeOut{
+				animation: fadeOut 1s ease 1 forwards ;
+				opacity: 1;
+				/* display: none; */
+				
+			}
+			
+			@keyframes fadeOut{
+				from{
+					opacity: 1;
+					transform: translateX(0);
+				}
+				to{
+					opacity: 0;
+					transform: translateX(-500px);
+				}
+			}
+			
+			
+			
+		</style>
+	</head>
+	<body>
+		
+		<button>按钮</button>
+		<!-- <input type="text"> -->
+		<textarea rows="10" cols="50"></textarea>
+		<span>0</span>/100
+		
+		<img class="img"  src="banner1.jpg" alt="">
+	</body>
+	<script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		//input事件
+		
+		document.getElementsByTagName('textarea')[0].oninput=function(){
+			var text = this.value;
+			if(this.value.length >100){
+				console.log(typeof this.value)
+				
+				this.value =text.substring(0,100)
+				
+			}else{
+				console.log(typeof this.value)
+				console.log(text.substring(0,100));
+				$('span').text(this.value.length);
+			}
+			
+		}
+		
+		//特效
+		
+		/* setTimeout(function(){
+			//移除事件
+		  $('img').hide()//参数1 移除的事件名称  参数2: 指定的函数
+			//show 显示
+		},1000) */
+		
+		var isShow = false;
+		
+		$('button').click(function(){
+			 if(isShow==false){
+				/* $('img').show();
+				 $('img').removeClass('fadeOut').addClass('fadeIn');
+				  //显示*/
+				 isShow = true;
+				 $('img').animate({'left':"200px"},1000,'swing');
+			}else{
+				/* $('img').addClass('fadeOut');
+				 setTimeout(function(){
+					 $('img').hide();
+					 },1000) 
+				 //隐藏 */
+				  isShow = false;
+				  $('img').animate({'left':"0px"},1000,function(){
+					  
+					  
+					  alert('执行完了')
+				  });
+			} 
+			
+			
+		})
+		
+		
+		
+		
+		/* $('input').input(function(){
+			
+			console.log($(this).val());
+		})
+		 */
+		
+		
+		//直接绑定事件
+		/* $(document).click(function(e) {
+
+			console.log(e);
+
+
+		}) */
+		$(document).mousemove(one=function(e) {
+			
+			//console.log(e.target)
+			
+			/* e.target.onclick =function(){
+				
+				alert(222);
+			} */
+			$(this).click(function(){
+				
+				//console.log(222);
+			})
+			//console.log($(e.target))
+
+			//console.log(e);
+
+		})
+		$(document).mousemove(two=function(e) {
+		
+		//	console.log("1111");
+		
+		})
+		
+		setTimeout(function(){
+			//移除事件
+		  $(document).off('mousemove',two);//参数1 移除的事件名称  参数2: 指定的函数
+			
+		},3000)
+		
+		//通过on绑定事件
+		$(document).on('keydown',function(e){
+			
+			//console.log(e.keyCode);
+			
+		})
+		
+		/* $(document).bind('click',function(){
+			
+			alert("111");
+		})
+		 */
+		
+		//$(document).trigger('click');//强行触发某个事件  参数: 事件名称
+		
+		setTimeout(function(){
+			//移除事件
+		  $(document).unbind('click');//参数1 移除的事件名称  参数2: 指定的函数
+			
+		},3000)
+		
+		//事件委托
+		document.oncontextmenu = function(e){
+			
+			e.preventDefault();
+			console.log(e.which);
+		}
+		$(document).on('click',function(e){
+			
+			console.log(e.which);
+			
+			switch(e.which){
+				
+				case 1 :
+				 console.log("点击了左键");
+				 break;
+				case 2 :
+				 console.log("点击了中键");
+				 break;
+				case 3 :
+				 console.log("点击了右键");
+				 break;
+				
+				default:
+				break;
+			}
+		})
+		
+		
+		
+	</script>
+</html>

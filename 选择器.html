@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="checkbox" value="333" data-type='1'>
+		
+		
+		<a href="" class="title" id="test" title="标题"><input type="checkbox">广东省进入多雨季节</a>
+		<a href=""  class="title" hidden="hidden" title="标题">华南地区进入多雨季节</a>
+		
+		<ul class="list">
+			<li>item</li>
+			<li></li>
+			<li>item</li>
+			<li></li>
+			<li></li>
+			<li>item</li>
+		</ul>
+	</body>
+	<script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	     var $dom =	$('.title[href]:visible');
+		  var $domeq =$('.title:eq(0)');
+		 console.dir($domeq);
+		 
+		 var p = '<p class="pp">我是第一个p标签<span>1111</span></p>';
+		 
+		 $(p)//创建元素
+		 console.log($(p).text());//获取文本
+		 
+		 //$('body').append($(p));//在body内部添加$(p)
+		  $(p).appendTo($('body'));//把$(p)添加到body内部
+		 
+		 $('.pp').click(function(){//绑定事件
+		 			 
+		 		$('.pp').text('更换文本')
+				
+				$('.pp').html('<span style="color:red">更换内容了</span>	')
+				$('input').val("222");//设置 value值
+			  var iv =	$('input').val();// 	
+					   console.log(iv);
+		 });
+		 
+		 $('input').wrap('<div class="one"></div>').wrap('<div class="two"></div>');//向匹配元素外部添加包裹(父元素)
+		 
+		 $('input').unwrap('<div></div>');//
+		 
+		// var remDom =  $('input').remove();//删除自身及子元素  返回匹配的元素
+		 //console.log(remDom[0]);
+		 
+		 var  divs = "<div class='box'>我是第一个DIV</div>"
+		 
+		 //$('.one').empty().append(divs);//empty()清空所有子元素
+		 //$('.one').empty('input');//清除指定元素 参数:选择器
+		 
+		 //替换元素
+		 $('input').replaceAll('.box'); //第一个对象  替换元素  第二个对象: 被替换元素
+		 
+		 console.log($('div').contents())
+		 
+		 
+		 function sle(){
+			return $('.list li').index(1);
+		 }
+		 /* sle(); */
+		/* 
+		var rel =$('.list li').replaceWith(function(){
+			
+			return $(this).index(1);
+		}) */
+		// console.log(rel)
+		 //克隆
+		  var clPP =  $('.list').clone(true);//true克隆内容+绑定的事件处理函数  false :只克隆内容
+		  
+		  //类名操作
+		  clPP.addClass('add1 add2');//添加类名
+		  clPP.removeClass('add2')//删除类名
+		  if(clPP.hasClass('add2')){//判断类名是否存在
+			  clPP.css('color','red');
+		  }
+		  
+		  //属性
+		  
+		  clPP.attr('title','今天是好日子');//设置属性
+		  console.log(clPP.attr('class'));//获取属性
+		  //设置多个属性以对象的形式传递
+		  var ULattr = {
+			  id:'listID',
+			  style:'font-size:24px',
+		  }
+		  clPP.attr({
+			  id:'listID',
+			  style:'font-size:24px',
+		  });
+		  //删除属性
+		  clPP.removeAttr('style');//属性名称
+		  
+		  
+		  
+		  $('body').append(clPP);
+		  
+		  //获取自定义属性 : data-*
+		  console.log($('input').data('type')) ;
+		  
+		  //属性操作
+		  var prop = $('input[type=checkbox]').prop('checked');//获取
+		  console.log(prop);
+		  $('input[type=checkbox]').prop('checked',true); //设置
+		  var prop = $('input[type=checkbox]').prop('checked');//获取
+		  console.log(prop);
+		  
+		  //css操作
+		  
+		console.log(  $('.list').css('color'))//获取css属性
+		  $('.list').css('background',"#F00");//设置单个
+		  
+		   $('.list').css({//设置多个  以对象的形式传递
+			   'font-weight':'bold',
+			   'font-size':'60px'
+		   });
+	</script>
+</html>

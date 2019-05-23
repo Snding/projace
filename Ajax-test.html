@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body><p>姓名: <span class="name"></span></p>
+		<p>性别: <span class="sex"></span></p>
+		<p>年龄: <span class="age"></span></p>
+		<p>爱好: <span class="hoppy"></span></p>
+		<p>手机: <span class="phone"></span></p>
+	</body>
+	<script src="https://cdn.bootcss.com/jquery/2.0.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		//https://blog.csdn.net/u014756827/article/details/52950514
+		//get请求
+		
+		/* $.ajax({
+			type:'get',//请求方式 post  get
+			url:'http://127.0.0.1:8848/jquery/test.json',//请求地址 //test.json?username=admin&password=123456&callback=?
+// 			
+// 			data:{//请求参数
+// 				username:'admin',
+// 				password:'123456'
+// 			},
+			//dataType:'jsonp',//跨域使用jsonp
+			dataFilter:function(data,dataType){//数据过滤 返回数据 以及请求的数据类型
+				//console.log(data)
+				//console.log(dataType)
+			},
+			success:function(data){
+				console.log(data);
+				
+			},
+			timeout:0,//设置请求超时时间
+			error:function(xhr,t,e){
+				console.log(xhr)
+				console.log(t)
+				console.log(e);
+			}
+		}) */
+		
+		
+		$.ajax({
+			type:'get',
+			url:'test.json',
+			success:function(data){
+				console.log(data);
+			},
+			timeout:1000,//设置请求超时时间
+			error:function(xhr,t,e){
+				console.log(xhr)
+				console.log(t)
+				console.log(e);
+			}
+		})
+		
+		
+
+		
+		/* 
+		$.get('test.json',function(res){
+			
+			if(res.code==200){//返回数据成功
+			var user =res.data;
+			$(".name").text(user.name);
+			$(".sex").text(user.sex);
+			$(".age").text(user.age);
+			//each遍历  参数1:数据 (对象，数组)  参数2: 回调函数 (下标,对象);
+			var hoppyHtml='';
+			$.each(user.hoppy,function(i,item){
+				hoppyHtml += '<span style="color:red">'+item+',</span>'
+				
+			})
+			$('.hoppy').after(hoppyHtml);
+			
+			//遍历手机
+			var phoneHtml='';
+			$.each(user.phone,function(i,item){
+				phoneHtml += '<span style="color:#096">'+item.pp+'</span>:<span style="color:red;margin-right:10px">￥'+item.price+'元</span>'
+				
+			})
+			$('.phone').after(phoneHtml)
+			}
+		})	
+		 */
+		
+	</script>
+</html>
